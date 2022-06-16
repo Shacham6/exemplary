@@ -1,0 +1,7 @@
+-e .
+mypy
+pytest
+flake8
+isort
+bandit
+coverage
