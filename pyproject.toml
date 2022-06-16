@@ -5,8 +5,8 @@ requires = ["setuptools", "versioningit~=0.3.0", "wheel"]
 [tool.versioningit]
 [tool.versioningit.vcs]
 default-tag = "0.0.0"
-match = ["exemplary/v*"]
+match = ["v*"]
 method = "git"
 
 [tool.versioningit.tag2version]
-rmprefix = "exemplary/v"
+rmprefix = "v"
