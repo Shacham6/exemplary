@@ -6,11 +6,11 @@ def test_scanner():
     segments = list(
         scan(
             """
-            @md-start arguments
+            @md-start code {}
             content
             @md-end
     """,
             Config(),
         )
     )
-    assert segments == [Segment("arguments", "content")]
+    assert segments == [Segment("code", {}, "content")]

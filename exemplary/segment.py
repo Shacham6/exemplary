@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any, Mapping
 
 
 @dataclass
@@ -7,5 +8,6 @@ class Segment:
     A scanned segment of source-code.
     """
 
-    args: str
+    processor: str
+    args: Mapping[str, Any]
     document: str
