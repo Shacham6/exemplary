@@ -14,29 +14,31 @@ clean:
 fix-format:
 	@black
 
-check-format:
+run-pylint:
 	@pylint $(SRC_DIR)/
+
+run-flake8:
 	@flake8 $(SRC_DIR)/
 
 typecheck:
 	@mypy $(SRC_DIR)
 
-run-tests:
+lint: run-pylint run-flake8 typecheck
+
+run-pytest:
 	@coverage run \
 		--source $(SRC_DIR) \
 		-m pytest \
 		-v tests
 
-coverage:
+check-coverage:
 	@coverage report \
 		--show-missing
 
+tests: | run-pytest check-coverage
+
 bandit:
 	@$(BANDIT) --recursive $(SRC_DIR)
-
-lint: typecheck check-format
-
-check: | check-format typecheck run-tests coverage
 
 prepare-docs:
 
