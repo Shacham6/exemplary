@@ -1,4 +1,6 @@
 -e .
+black
+pylint
 mypy
 pytest
 flake8
