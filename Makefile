@@ -14,16 +14,16 @@ clean:
 fix-format:
 	@black
 
-run-pylint:
+pylint:
 	@pylint $(SRC_DIR)/
 
-run-flake8:
+flake8:
 	@flake8 $(SRC_DIR)/
 
 typecheck:
 	@mypy $(SRC_DIR) --pretty
 
-lint: run-pylint run-flake8 typecheck
+lint: pylint flake8 typecheck
 
 run-pytest:
 	@coverage run \
