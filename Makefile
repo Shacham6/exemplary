@@ -21,7 +21,7 @@ run-flake8:
 	@flake8 $(SRC_DIR)/
 
 typecheck:
-	@mypy $(SRC_DIR)
+	@mypy $(SRC_DIR) --pretty
 
 lint: run-pylint run-flake8 typecheck
 

@@ -11,6 +11,9 @@ method = "git"
 [tool.versioningit.tag2version]
 rmprefix = "v"
 
+[tool.mypy]
+strict = true
+
 [tool.black]
 line_length = 80
 
