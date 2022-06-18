@@ -1,4 +1,4 @@
-![Logo](https://github.com/shacham6/exemplary/raw/master/assets/Logo/For%20Web/svg/../../../../../../../../../../assets/Logo/For%20Web/svg/Black%20logo%20-%20no%20background.svg)
+![Logo](https://github.com/shacham6/exemplary/raw/master/assets/Logo/For%20Web/svg/Color%20logo%20-%20no%20background.svg)
 
 # Exemplary
 
