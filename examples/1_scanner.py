@@ -28,7 +28,8 @@ def simple_scan_example():
     # See here:
     # @end
 
-    text = "# @start md\n# Content\n# @end"
+    # Need to do the replace thing because else it would be captured.
+    text = "# @_start md\n# Content\n# @_end".replace("@_", "@")
 
     # @start py
 
@@ -77,7 +78,9 @@ def automatic_comments_syntax():
     # // @@end
     # ```
     # @end
-    text = "// @start md\n// Content\n// @end"
+
+    # Need to do the replace thing because else it would be captured.
+    text = "// @_start md\n// Content\n// @_end".replace("@_", "@")
 
     # @start md
     # Scanning it will yield the same segment as in the previous example,
