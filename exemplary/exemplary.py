@@ -1,6 +1,9 @@
-from typing import Mapping
-from .processors.base import ProcessorBase
+from typing import Iterable, Mapping
+
 from .config import Config
+from .processors._all_builtins import get_all_builtin_processors
+from .processors._processor_pool import ProcessorPool
+from .processors.base import ProcessorBase
 
 
 class Exemplary:
@@ -8,9 +11,8 @@ class Exemplary:
     The main class.
     """
 
-    def __init__(self, processors: Mapping[str, ProcessorBase], config: Config):
-        self.__processors = processors
-        self.__config = config
+    def __init__(self):
+        self.__processors = ProcessorPool(get_all_builtin_processors())
 
     def generate(self):
         pass
