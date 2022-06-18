@@ -30,3 +30,6 @@ jobs:
 
       - name: Tests
         run: make tests
+
+      - name: Examples
+        run: make examples
