@@ -36,18 +36,18 @@ def scan(content: str, config: Config) -> Iterable[Segment]:
     while found_match := __PAT.search(content, pos):
         pos = found_match.end(0)
         group = found_match.groupdict()
-        processor_type = group[str(TokenType.PROCESSOR_TYPE)]
-        args = __build_args(group[str(TokenType.ARGS)])
+        processor_type = group[TokenType.PROCESSOR_TYPE]
+        args = __build_args(group[TokenType.ARGS])
         document = "\n".join((
-            __remove_prefix(line, group[str(TokenType.WHITESPACES)])
-            for line in group[str(TokenType.DOCUMENT)].splitlines()
+            __remove_prefix(line, group[TokenType.WHITESPACES])
+            for line in group[TokenType.DOCUMENT].splitlines()
         ))  # fmt: skip
 
         yield Segment(
             processor_type,
             args,
             document,
-            comment_pat=group[str(TokenType.COMMENT_PATTERN)],
+            comment_pat=group[TokenType.COMMENT_PATTERN],
         )
 
 
