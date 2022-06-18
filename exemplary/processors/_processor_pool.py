@@ -1,4 +1,4 @@
-from typing import Dict, Iterable, List, Mapping
+from typing import Dict, Iterable, Iterator, List, Mapping
 from .base import ProcessorBase
 
 
@@ -9,23 +9,28 @@ class ProcessorPool(Mapping[str, ProcessorBase]):
 
     def __init__(self, processors: Iterable[ProcessorBase]):
         self.__processors = list(processors)
-        self.__indexed = _build_processor_indexing(self.__processors)
+        self.__indexed = _build_processor_indexing(
+            self.__processors
+        )
 
     def __getitem__(self, __k: str) -> ProcessorBase:
         return self.__indexed[__k]
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[str]:
+        return iter(self._get_first_names())
+
+    def _get_first_names(self) -> Iterable[str]:
         for processor in self.__processors:
             yield processor.names[0]
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.__processors)
 
 
 def _build_processor_indexing(
     processors: List[ProcessorBase],
 ) -> Dict[str, ProcessorBase]:
-    indexed = {}
+    indexed: Dict[str, ProcessorBase] = {}
     for processor in processors:
         for processor_name in processor.names:
             if processor_name in indexed:

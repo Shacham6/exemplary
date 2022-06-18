@@ -7,7 +7,7 @@ from .scanner import scan
 _processors = ProcessorPool(get_all_builtin_processors())
 
 
-def generate(filepath: pathlib.Path):
+def generate(filepath: pathlib.Path) -> str:
     """
     Read a file and generate a markdown from the content.
     """

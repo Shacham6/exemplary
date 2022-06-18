@@ -1,7 +1,7 @@
 import abc
 from typing import Tuple
 
-from exemplary.scanner import Segment
+from ..segment import Segment
 
 
 class ProcessorBase(metaclass=abc.ABCMeta):

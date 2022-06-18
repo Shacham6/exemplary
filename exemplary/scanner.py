@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Any, Iterable, Mapping, Optional
+from typing import Iterable, Mapping, Optional, cast
 
 from .segment import Segment
 
@@ -55,9 +55,9 @@ def scan(content: str) -> Iterable[Segment]:
         )
 
 
-def __build_args(raw_args: Optional[str]) -> Mapping[str, Any]:
+def __build_args(raw_args: Optional[str]) -> Mapping[str, object]:
     if raw_args and raw_args.strip():
-        return json.loads(raw_args)
+        return cast(Mapping[str, object], json.loads(raw_args))
 
     return {}
 

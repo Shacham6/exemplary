@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import Any, Mapping
+from typing import Mapping
 
 
 @dataclass
@@ -9,6 +9,6 @@ class Segment:
     """
 
     processor: str
-    args: Mapping[str, Any]
+    args: Mapping[str, object]
     document: str
     comment_pat: str

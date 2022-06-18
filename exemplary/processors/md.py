@@ -1,7 +1,8 @@
 import re
 from typing import Optional, Tuple
 
-from .base import ProcessorBase, Segment
+from ..segment import Segment
+from .base import ProcessorBase
 
 
 class MarkdownProcessor(ProcessorBase):

@@ -1,5 +1,7 @@
 from typing import Tuple
-from .base import ProcessorBase, Segment
+
+from ..segment import Segment
+from .base import ProcessorBase
 
 
 class FenceProcessor(ProcessorBase):
@@ -13,7 +15,7 @@ class FenceProcessor(ProcessorBase):
 
     @property
     def names(self) -> Tuple[str, ...]:
-        return "fence",  # pylint: disable=trailing-comma-tuple
+        return ("fence",)  # pylint: disable=trailing-comma-tuple
 
     def process(self, segment: Segment) -> str:
         lang = segment.args.get("lang", "text")

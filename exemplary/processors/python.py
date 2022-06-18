@@ -1,7 +1,8 @@
 from dataclasses import replace
 from typing import Tuple
 
-from .base import ProcessorBase, Segment
+from ..segment import Segment
+from .base import ProcessorBase
 from .fence import FenceProcessor
 
 
@@ -15,7 +16,10 @@ class PythonProcessor(ProcessorBase):
 
     @property
     def names(self) -> Tuple[str, ...]:
-        return "py", "python",  # pylint: disable=trailing-comma-tuple
+        return (
+            "py",
+            "python",
+        )  # pylint: disable=trailing-comma-tuple
 
     def process(self, segment: Segment) -> str:
         return FenceProcessor().process(
