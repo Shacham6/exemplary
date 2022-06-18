@@ -11,7 +11,7 @@ class MarkdownProcessor(ProcessorBase):
 
     @property
     def names(self) -> Tuple[str, ...]:
-        return "md",
+        return "md", "markdown",
 
     def process(self, segment: Segment) -> str:
         lines = []

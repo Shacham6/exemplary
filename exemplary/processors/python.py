@@ -8,7 +8,7 @@ from .fence import FenceProcessor
 class PythonProcessor(ProcessorBase):
     @property
     def names(self) -> Tuple[str, ...]:
-        return "py",
+        return "py", "python",
 
     def process(self, segment: Segment) -> str:
         return FenceProcessor().process(
