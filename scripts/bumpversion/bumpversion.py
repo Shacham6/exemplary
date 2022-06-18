@@ -19,9 +19,7 @@ def cli(bump_type: str):  # pylint: disable=missing-function-docstring
     if not current_match:
         raise ValueError(f"Invalid version: {current}")
     result = current_match.groupdict()
-    print(result)
     bump_version(result, bump_type)
-    print(result)
     print(f"{result['major']}.{result['minor']}.{result['patch']}")
 
 
