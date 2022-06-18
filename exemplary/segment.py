@@ -11,3 +11,4 @@ class Segment:
     processor: str
     args: Mapping[str, Any]
     document: str
+    comment_pat: str

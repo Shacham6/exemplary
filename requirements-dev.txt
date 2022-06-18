@@ -3,6 +3,7 @@ black
 pylint
 mypy
 pytest
+pytest-subtests
 flake8
 isort
 bandit

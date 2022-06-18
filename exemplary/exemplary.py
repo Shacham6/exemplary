@@ -1,5 +1,5 @@
 from typing import Mapping
-from .processor import ProcessorBase
+from .processors.base import ProcessorBase
 from .config import Config
 
 
