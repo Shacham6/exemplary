@@ -11,7 +11,10 @@ class MarkdownProcessor(ProcessorBase):
 
     @property
     def names(self) -> Tuple[str, ...]:
-        return "md", "markdown",
+        return (
+            "md",
+            "markdown",
+        )
 
     def process(self, segment: Segment) -> str:
         lines = []
@@ -19,7 +22,8 @@ class MarkdownProcessor(ProcessorBase):
         for line in segment.document.splitlines():
             line = _remove_prefix(line, segment.comment_pat)
             line_whitespace_count = whitespace_count(line)
-            if line_whitespace_count and min_whitespace_buf > line_whitespace_count:
+            if line_whitespace_count \
+                    and min_whitespace_buf > line_whitespace_count:
                 min_whitespace_buf = line_whitespace_count
             lines.append(line)
 
@@ -43,6 +47,7 @@ _WHITESPACES_PAT = re.compile(r"^( +)[^ ]?")
 
 
 def whitespace_count(text: str) -> Optional[int]:
+    """Count the leading whitespaces in the line, if any."""
     match = _WHITESPACES_PAT.match(text)
     if not match:
         return None

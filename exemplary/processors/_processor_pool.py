@@ -3,6 +3,10 @@ from .base import ProcessorBase
 
 
 class ProcessorPool(Mapping[str, ProcessorBase]):
+    """
+    A collection of processors, indexed by their names.
+    """
+
     def __init__(self, processors: Iterable[ProcessorBase]):
         self.__processors = list(processors)
         self.__indexed = _build_processor_indexing(self.__processors)
@@ -34,15 +38,18 @@ def _build_processor_indexing(
 
 
 class NameConflictException(Exception):
+    """
+    Raised when 2 processors have the same name.
+    """
+
     def __init__(
         self, name: str, original: ProcessorBase, conflicting: ProcessorBase
     ):
-        super().__init__(
-            f"Conflicting name {name!r} between {original!r} and {conflicting!r}",
-            name,
-            original,
-            conflicting,
+        msg = (
+            f"Conflicting name {name!r} between "
+            f"{original!r} and {conflicting!r}",
         )
+        super().__init__(msg, name, original, conflicting)
         self.name = name
         self.original = original
         self.conflicting = conflicting

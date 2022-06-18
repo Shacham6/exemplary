@@ -4,11 +4,14 @@ import json
 import re
 from typing import Any, Iterable, Mapping, Optional
 
-from .config import Config
 from .segment import Segment
 
 
 class TokenType:
+    """
+    Contains the names of all the captured components.
+    """
+
     WHITESPACES = "WHITESPACES"
     PROCESSOR_TYPE = "PROCESSOR_TYPE"
     ARGS = "ARGS"
@@ -18,8 +21,10 @@ class TokenType:
 
 __PAT = re.compile(
     (
-        rf"(?P<{TokenType.WHITESPACES}>[ \t]*)(?:(?P<{TokenType.COMMENT_PATTERN}>[a-zA-Z0-9@#/]+) *)"
-        rf"(?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)(?P<{TokenType.ARGS}>[^\n]+)?\n"
+        rf"(?P<{TokenType.WHITESPACES}>[ \t]*)"
+        rf"(?:(?P<{TokenType.COMMENT_PATTERN}>[a-zA-Z0-9@#/]+) *)"
+        rf"(?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)"
+        rf"(?P<{TokenType.ARGS}>[^\n]+)?\n"
         rf"(?P<{TokenType.DOCUMENT}>.+?)"
         rf"(?P={TokenType.COMMENT_PATTERN})[\t ]*(?:@end)"
     ),
