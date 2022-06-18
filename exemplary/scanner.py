@@ -27,7 +27,7 @@ __PAT = re.compile(
 )  # fmt: skip
 
 
-def scan(content: str, config: Config) -> Iterable[Segment]:
+def scan(content: str) -> Iterable[Segment]:
     """
     Scan a string content and yield segments.
     """

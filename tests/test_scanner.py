@@ -1,4 +1,3 @@
-from exemplary.config import Config
 from exemplary.scanner import Segment, scan
 
 
@@ -10,7 +9,6 @@ def test_basic_scan():
             content
             # @end
     """,
-            Config(inputs=[]),
         )
     )
     assert segments == [Segment("code", {}, "content\n", "#")]
@@ -24,7 +22,6 @@ def test_any_comment_prefix():
             content
             banana @end
         """,
-            Config(inputs=[]),
         )
     )
     assert segments == [Segment("code", {}, "content\n", "banana")]
@@ -38,7 +35,6 @@ def test_with_args():
         content
         # @end
         """,
-            Config(inputs=[]),
         )
     )
     assert segments == [
@@ -60,7 +56,6 @@ def test_multiple_segments():
         Content3
         # @end
         """,
-            Config(inputs=[]),
         )
     )
     assert segments == [
