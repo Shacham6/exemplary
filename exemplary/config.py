@@ -8,5 +8,4 @@ class Config(BaseModel):
     The configuration for exemplary.
     """
 
-    strip: str = " \n"
     inputs: Sequence[str]

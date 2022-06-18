@@ -1,5 +1,5 @@
 import re
-from typing import Tuple
+from typing import Optional, Tuple
 
 from .base import ProcessorBase, Segment
 
@@ -19,7 +19,7 @@ class MarkdownProcessor(ProcessorBase):
         for line in segment.document.splitlines():
             line = _remove_prefix(line, segment.comment_pat)
             line_whitespace_count = whitespace_count(line)
-            if min_whitespace_buf > line_whitespace_count:
+            if line_whitespace_count and min_whitespace_buf > line_whitespace_count:
                 min_whitespace_buf = line_whitespace_count
             lines.append(line)
 
@@ -42,9 +42,9 @@ def _remove_prefix(text: str, prefix: str) -> str:
 _WHITESPACES_PAT = re.compile(r"^( +)[^ ]?")
 
 
-def whitespace_count(text: str) -> int:
+def whitespace_count(text: str) -> Optional[int]:
     match = _WHITESPACES_PAT.match(text)
     if not match:
-        return 0
+        return None
 
     return len(match.group(1))
