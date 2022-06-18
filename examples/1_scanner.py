@@ -28,7 +28,7 @@ def simple_scan_example():
     # See here:
     # @end
 
-    text = "\n".join(("# @start md", "# Content", "# @end"))
+    text = "# @start md\n# Content\n# @end"
 
     # @start py
 
@@ -55,7 +55,7 @@ def simple_scan_example():
         Segment(
             processor="md",
             args={},
-            document="Content",
+            document="# Content",
             comment_pat="#",
         )
         # @end

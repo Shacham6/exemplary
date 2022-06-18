@@ -24,7 +24,7 @@ __PAT = re.compile(
         rf"(?P<{TokenType.WHITESPACES}>[ \t]*)"
         rf"(?:(?P<{TokenType.COMMENT_PATTERN}>[a-zA-Z0-9@#/]+) *)"
         rf"[^@](?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)"
-        rf"(?P<{TokenType.ARGS}>(?!\n|_IGNORE)+)?\n"
+        rf"(?P<{TokenType.ARGS}>[^\n]+)?\n"
         rf"(?P<{TokenType.DOCUMENT}>.+?)"
         rf"(?P={TokenType.COMMENT_PATTERN})[\t ]*[^@](?:@end)"
     ),
