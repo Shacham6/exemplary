@@ -1,0 +1,62 @@
+site_name: Exemplary
+repo_url: https://github.com/shacham6/exemplary
+repo_name: Exemplary
+theme:
+  name: material
+  palette:
+    - scheme: dracula
+      toggle:
+        icon: material/eye-outline
+        name: Switch to dark mode
+      primary: teal
+    - scheme: slate
+      toggle:
+        icon: material/eye
+        name: Switch to light mode
+      primary: black
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  features:
+    - navigation.indexes
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - navigation.sections
+
+nav:
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - meta
+  - admonition
+  - footnotes
+  - pymdownx.superfences:
+  - pymdownx.highlight:
+      linenums: true
+      anchor_linenums: true
+  - pymdownx.inlinehilite:
+  - pymdownx.magiclink:
+  - pymdownx.tilde:
+  - pymdownx.caret:
+  - pymdownx.smartsymbols:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.escapeall:
+      hardbreak: true
+      nbsp: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.progressbar:
+  - pymdownx.arithmatex:
+  - pymdownx.mark:
+  - pymdownx.striphtml:
+  - pymdownx.details:
+  - pymdownx.tabbed:
+  - pymdownx.saneheaders:
+
+plugins:
+  - search
