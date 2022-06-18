@@ -23,10 +23,10 @@ __PAT = re.compile(
     (
         rf"(?P<{TokenType.WHITESPACES}>[ \t]*)"
         rf"(?:(?P<{TokenType.COMMENT_PATTERN}>[a-zA-Z0-9@#/]+) *)"
-        rf"(?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)"
-        rf"(?P<{TokenType.ARGS}>[^\n]+)?\n"
+        rf"[^@](?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)"
+        rf"(?P<{TokenType.ARGS}>(?!\n|_IGNORE)+)?\n"
         rf"(?P<{TokenType.DOCUMENT}>.+?)"
-        rf"(?P={TokenType.COMMENT_PATTERN})[\t ]*(?:@end)"
+        rf"(?P={TokenType.COMMENT_PATTERN})[\t ]*[^@](?:@end)"
     ),
     re.DOTALL
 )  # fmt: skip
@@ -46,6 +46,7 @@ def scan(content: str) -> Iterable[Segment]:
             __remove_prefix(line, group[TokenType.WHITESPACES])
             for line in group[TokenType.DOCUMENT].splitlines()
         ))  # fmt: skip
+        document = document.replace("@@start", "@start").replace("@@end", "@end")
 
         yield Segment(
             processor_type,

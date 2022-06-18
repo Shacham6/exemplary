@@ -1,5 +1,5 @@
 # Local repo management
-.PHONY: tests docs
+.PHONY: tests docs examples
 
 SRC_DIR = exemplary
 
@@ -25,7 +25,7 @@ typecheck:
 
 lint: pylint flake8 typecheck
 
-run-pytest:
+pytest:
 	@coverage run \
 		--source $(SRC_DIR) \
 		-m pytest \
@@ -35,14 +35,29 @@ check-coverage:
 	@coverage report \
 		--show-missing
 
-tests: | run-pytest check-coverage
+tests: | pytest check-coverage
+
+examples:
+	@pytest -c examples/pytest.ini examples
 
 bandit:
 	@$(BANDIT) --recursive $(SRC_DIR)
 
 prepare-docs:
+	exemplary generate examples/1_scanner.py > docs/1_gen_scanner.md
 
 clean-generated-docs:
+	rm docs/1_gen_scanner.md
+
+publish-docs:
+	make prepare-docs
+	mkdocs gh-deploy
+	make clean-generated-docs
+
+watch-docs:
+	make prepare-docs
+	mkdocs serve
+	make clean-generated-docs
 
 build:
 	@pip install --upgrade build
