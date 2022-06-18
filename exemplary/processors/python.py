@@ -1,4 +1,5 @@
 from dataclasses import replace
+from typing import Tuple
 
 from .base import ProcessorBase, Segment
 from .fence import FenceProcessor
@@ -6,8 +7,8 @@ from .fence import FenceProcessor
 
 class PythonProcessor(ProcessorBase):
     @property
-    def name(self) -> str:
-        return "py"
+    def names(self) -> Tuple[str, ...]:
+        return "py",
 
     def process(self, segment: Segment) -> str:
         return FenceProcessor().process(

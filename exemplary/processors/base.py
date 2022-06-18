@@ -1,4 +1,5 @@
 import abc
+from typing import Tuple
 
 from exemplary.scanner import Segment
 
@@ -10,7 +11,7 @@ class ProcessorBase(metaclass=abc.ABCMeta):
 
     @property
     @abc.abstractmethod
-    def name(self) -> str:
+    def names(self) -> Tuple[str, ...]:
         """
         The name by which the processor is identified.
         """

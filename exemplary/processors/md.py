@@ -1,4 +1,5 @@
 import re
+from typing import Tuple
 
 from .base import ProcessorBase, Segment
 
@@ -9,8 +10,8 @@ class MarkdownProcessor(ProcessorBase):
     """
 
     @property
-    def name(self) -> str:
-        return "md"
+    def names(self) -> Tuple[str, ...]:
+        return "md",
 
     def process(self, segment: Segment) -> str:
         lines = []
