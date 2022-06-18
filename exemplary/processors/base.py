@@ -1,5 +1,4 @@
 import abc
-from exemplary.config import Config
 
 from exemplary.scanner import Segment
 
@@ -10,7 +9,7 @@ class ProcessorBase(metaclass=abc.ABCMeta):
     """
 
     @abc.abstractmethod
-    def process(self, segment: Segment, config: Config) -> str:
+    def process(self, segment: Segment) -> str:
         """
         Process the segment into an appropriate Markdown repressentation.
         """

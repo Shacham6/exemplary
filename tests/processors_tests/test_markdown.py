@@ -1,7 +1,6 @@
 from pytest_subtests import SubTests
 
 from exemplary.processors.md import (
-    Config,
     MarkdownProcessor,
     Segment,
     whitespace_count,
@@ -21,7 +20,6 @@ def test_comment_stripping(subtests: SubTests):
                 ),
                 "#",
             ),
-            Config(inputs=[]),
         )
         assert result == _text(
             "Line 1",
@@ -39,7 +37,6 @@ def test_comment_stripping(subtests: SubTests):
                 ),
                 "#",
             ),
-            Config(inputs=[]),
         )
         assert result == _text(
             "Only 1 Whitespace",

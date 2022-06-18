@@ -1,5 +1,5 @@
 from pytest_subtests import SubTests
-from exemplary.processors.fence import FenceProcessor, Segment, Config
+from exemplary.processors.fence import FenceProcessor, Segment
 
 
 def test_fence_processor(subtests: SubTests):
@@ -12,7 +12,6 @@ def test_fence_processor(subtests: SubTests):
                 "hello",
                 "#",
             ),
-            Config(inputs=[]),
         )
         assert result == "\n".join(
             (
@@ -30,8 +29,7 @@ def test_fence_processor(subtests: SubTests):
                 {"lang": "python"},
                 "print('hello')",
                 "#",
-            ),
-            Config(inputs=[]),
+            )
         )
         assert result == "\n".join(
             (

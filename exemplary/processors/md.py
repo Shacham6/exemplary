@@ -1,6 +1,6 @@
 import re
 
-from .base import Config, ProcessorBase, Segment
+from .base import ProcessorBase, Segment
 
 
 class MarkdownProcessor(ProcessorBase):
@@ -8,7 +8,7 @@ class MarkdownProcessor(ProcessorBase):
     Processes raw markdown.
     """
 
-    def process(self, segment: Segment, config: Config) -> str:
+    def process(self, segment: Segment) -> str:
         lines = []
         min_whitespace_buf = float("inf")
         for line in segment.document.splitlines():
