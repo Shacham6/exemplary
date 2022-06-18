@@ -5,6 +5,10 @@ from .fence import FenceProcessor
 
 
 class PythonProcessor(ProcessorBase):
+    @property
+    def name(self) -> str:
+        return "py"
+
     def process(self, segment: Segment) -> str:
         return FenceProcessor().process(
             replace(

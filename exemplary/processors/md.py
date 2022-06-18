@@ -8,6 +8,10 @@ class MarkdownProcessor(ProcessorBase):
     Processes raw markdown.
     """
 
+    @property
+    def name(self) -> str:
+        return "md"
+
     def process(self, segment: Segment) -> str:
         lines = []
         min_whitespace_buf = float("inf")
