@@ -6,7 +6,6 @@ from typing import Any, Iterable, Mapping, Optional
 
 from .config import Config
 from .segment import Segment
-from enum import Enum, auto
 
 
 class TokenType:
