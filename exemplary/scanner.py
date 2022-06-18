@@ -6,14 +6,23 @@ from typing import Any, Iterable, Mapping, Optional
 
 from .config import Config
 from .segment import Segment
+from enum import Enum, auto
+
+
+class TokenType:
+    WHITESPACES = "WHITESPACES"
+    PROCESSOR_TYPE = "PROCESSOR_TYPE"
+    ARGS = "ARGS"
+    DOCUMENT = "DOCUMENT"
+    COMMENT_PATTERN = "COMMENT_PATTERN"
 
 
 __PAT = re.compile(
     (
-        r"(?P<whitespaces>[ \t]*)(?:(?P<comment_pattern>[a-zA-Z0-9@#/]+) *)"
-        r"(?:@start) +(?P<processor_type>[a-z\-]+)(?P<args>[^\n]+)?\n"
-        r"(?P<document>.+?)"
-        r"(?P=comment_pattern)[\t ]*(?:@end)"
+        rf"(?P<{TokenType.WHITESPACES}>[ \t]*)(?:(?P<{TokenType.COMMENT_PATTERN}>[a-zA-Z0-9@#/]+) *)"
+        rf"(?:@start) +(?P<{TokenType.PROCESSOR_TYPE}>[a-z\-]+)(?P<{TokenType.ARGS}>[^\n]+)?\n"
+        rf"(?P<{TokenType.DOCUMENT}>.+?)"
+        rf"(?P={TokenType.COMMENT_PATTERN})[\t ]*(?:@end)"
     ),
     re.DOTALL
 )  # fmt: skip
@@ -27,14 +36,19 @@ def scan(content: str, config: Config) -> Iterable[Segment]:
     while found_match := __PAT.search(content, pos):
         pos = found_match.end(0)
         group = found_match.groupdict()
-        processor_type = group["processor_type"]
-        args = __build_args(group["args"])
+        processor_type = group[str(TokenType.PROCESSOR_TYPE)]
+        args = __build_args(group[str(TokenType.ARGS)])
         document = "\n".join((
-            __remove_prefix(line, group["whitespaces"])
-            for line in group["document"].splitlines()
+            __remove_prefix(line, group[str(TokenType.WHITESPACES)])
+            for line in group[str(TokenType.DOCUMENT)].splitlines()
         ))  # fmt: skip
 
-        yield Segment(processor_type, args, document, comment_pat=group["comment_pat"])
+        yield Segment(
+            processor_type,
+            args,
+            document,
+            comment_pat=group[str(TokenType.COMMENT_PATTERN)],
+        )
 
 
 def __build_args(raw_args: Optional[str]) -> Mapping[str, Any]:

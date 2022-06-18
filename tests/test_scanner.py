@@ -13,7 +13,7 @@ def test_basic_scan():
             Config(inputs=[]),
         )
     )
-    assert segments == [Segment("code", {}, "content\n")]
+    assert segments == [Segment("code", {}, "content\n", "#")]
 
 
 def test_any_comment_prefix():
@@ -27,7 +27,7 @@ def test_any_comment_prefix():
             Config(inputs=[]),
         )
     )
-    assert segments == [Segment("code", {}, "content\n")]
+    assert segments == [Segment("code", {}, "content\n", "banana")]
 
 
 def test_with_args():
@@ -41,7 +41,9 @@ def test_with_args():
             Config(inputs=[]),
         )
     )
-    assert segments == [Segment("code", {"argument": "value"}, "content\n")]
+    assert segments == [
+        Segment("code", {"argument": "value"}, "content\n", "#")
+    ]
 
 
 def test_multiple_segments():
@@ -62,7 +64,7 @@ def test_multiple_segments():
         )
     )
     assert segments == [
-        Segment("code", {}, "Content1\n"),
-        Segment("code", {}, "Content2\n"),
-        Segment("code", {}, "Content3\n"),
+        Segment("code", {}, "Content1\n", "#"),
+        Segment("code", {}, "Content2\n", "#"),
+        Segment("code", {}, "Content3\n", "#"),
     ]
