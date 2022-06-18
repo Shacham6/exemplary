@@ -46,7 +46,9 @@ def scan(content: str) -> Iterable[Segment]:
             __remove_prefix(line, group[TokenType.WHITESPACES])
             for line in group[TokenType.DOCUMENT].splitlines()
         ))  # fmt: skip
-        document = document.replace("@@start", "@start").replace("@@end", "@end")
+
+        document = document.replace("@@start", "@start")
+        document = document.replace("@@end", "@end")
 
         yield Segment(
             processor_type,
