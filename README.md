@@ -1,4 +1,4 @@
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/python-exemplary/0.0.3)](https://pypi.org/project/python-examplary/) [![PyPI version](https://badge.fury.io/py/python-exemplary.svg)](https://badge.fury.io/py/python-exemplary)
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/python-exemplary/0.0.3)](https://pypi.org/project/python-exemplary/) [![PyPI version](https://badge.fury.io/py/python-exemplary.svg)](https://badge.fury.io/py/python-exemplary)
 ![Logo](https://github.com/shacham6/exemplary/raw/master/assets/Logo/For%20Web/svg/Color%20logo%20-%20no%20background.svg)
 
 # Exemplary
