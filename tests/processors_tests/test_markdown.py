@@ -50,7 +50,7 @@ def _text(*lines: str) -> str:
 
 def test_whitespace_count(subtests: SubTests):
     with subtests.test("Simple"):
-        assert whitespace_count("") == 0
+        assert whitespace_count("") is None
         assert whitespace_count(" ") == 1
         assert whitespace_count(" Something") == 1
 
